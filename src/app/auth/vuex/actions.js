@@ -7,7 +7,7 @@ export const register = ({commit, dispatch}, {payload, context}) => {
 	context.loading = true
 	context.error = null
 
-	axios.post(process.env.API_URL + '/vendor/register', {
+	axios.post(process.env.API_URL + '/auth/register', {
 		username: payload.username,
 		password: payload.password,
 		firstname: payload.firstname,
@@ -28,7 +28,7 @@ export const register = ({commit, dispatch}, {payload, context}) => {
 export const login = ({commit, dispatch}, {payload, context}) => {
 	context.loading = true
 	context.error = null
-	axios.post(process.env.API_URL + '/vendor/login', {
+	axios.post(process.env.API_URL + '/auth/login', {
 		username: payload.username,
 		password: payload.password
 	}).then((response) => {
@@ -63,7 +63,7 @@ export const getUserIfNull = ({commit, state, dispatch}, payload) => {
 }
 
 export const getUser = ({commit}, payload) => {
-	return axios.get(process.env.API_URL + '/vendor/authedUser').then((response) => {
+	return axios.get(process.env.API_URL + '/auth/user').then((response) => {
 		// set the user data in the store
 		commit('setUser', response.data)
 		// set the authenticated state in the store to true
